@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+
+    <div class="page-wraper">
+        <div id="loading-icon-bx"></div>
+        <div class="account-form">
+            <div class="account-head" style="background-image:url(assets/images/background/bg2.jpg);">
+                <a href="{{ path('app_hi') }}"><img src="assets/images/logo-white-2.png" alt=""></a>
+            </div>
+            <div class="account-form-inner">
+                <div class="account-container">
+                    <div class="heading-bx left">
+                        <h2 class="title-head">Login to your <span>Account</span></h2>
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+                        <p>Don't have an account? <a href="{{ path('app_register') }}">Create one here</a></p>
+                    </div>
+                    <form method="post" class="contact-bx">
+                        <div class="row placeani">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Your Email</label>
+                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Your Password</label>
+                                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}"
+                            >
+                            <div class="col-lg-12">
+                                <div class="form-group form-forget">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                        <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                                    </div>
+                                    <a href="{{ path('app_forgot_password_request') }}" class="ml-auto">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 m-b30">
+                                <button class="btn btn-lg btn-primary" type="submit">
+                                    Sign in
+                                </button>                            </div>
+                            <div class="col-lg-12">
+                                <h6>Login with Social media</h6>
+                                <div class="d-flex">
+                                    <a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
+                                    <a class="btn flex-fill m-l5 google-plus" href="#"><i class="fa fa-google-plus"></i>Google Plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+
+
+{% endblock %}
+
+
+
+
+
+
+{#
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+
+
+<button class="btn btn-lg btn-primary" type="submit">
+    Sign in
+</button>
+</form>
+
+#}

@@ -1,0 +1,222 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+
+
+
+
+    <div class="page-wraper">
+        <div id="loading-icon-bx"></div>
+        <div class="account-form">
+            <div class="account-head" style="background-image:url(assets/images/background/bg2.jpg);">
+                <a href="{{ path('app_hi') }}"><img src="assets/images/logo-white-2.png" alt=""></a>
+            </div>
+            <div class="account-form-inner">
+                <div class="account-container">
+                    <div class="heading-bx left">
+                        <h2 class="title-head">Sign Up <span>Now</span></h2>
+                        <p>Login Your Account <a href="{{ path('app_login') }}">Click here</a></p>
+                    </div>
+                    {{ form_start(registrationForm,{'attr':{'novalidate':'novalidate'  }}) }}
+
+                    <div class="contact-bx">
+                        <div class="row placeani">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre Nom</label>
+                                        {{  form_label(registrationForm.nom,' ')}}
+                                        {{ form_widget(registrationForm.nom) }}
+                                        {{  form_errors(registrationForm.nom)}}  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre prenom</label>
+                                        {{  form_label(registrationForm.prenom,' ')}}
+                                        {{ form_widget(registrationForm.prenom) }}
+                                        {{  form_errors(registrationForm.prenom)}}                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre photo</label>
+                                        {{  form_label(registrationForm.photo,' ')}}
+                                        {{ form_widget(registrationForm.photo) }}
+                                        {{  form_errors(registrationForm.photo)}}                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre carte d'identite</label>
+                                        {{  form_label(registrationForm.cin,' ')}}
+                                        {{ form_widget(registrationForm.cin) }}
+                                        {{  form_errors(registrationForm.cin)}}                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre Region</label>
+                                        {{  form_label(registrationForm.region,' ')}}
+                                        {{ form_widget(registrationForm.region) }}
+                                        {{  form_errors(registrationForm.region)}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre Ville</label>
+
+                                        {{  form_label(registrationForm.ville,' ')}}
+                                        {{ form_widget(registrationForm.ville) }}
+                                        {{  form_errors(registrationForm.ville)}}                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre adresse</label>
+                                        {{  form_label(registrationForm.adresse,' ')}}
+                                        {{ form_widget(registrationForm.adresse) }}
+                                        {{  form_errors(registrationForm.adresse)}}                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre email</label>
+
+                                        {{  form_label(registrationForm.email,' ')}}
+                                        {{ form_widget(registrationForm.email) }}
+                                        {{  form_errors(registrationForm.email)}}                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Votre password</label>
+                                        {{  form_label(registrationForm.plainPassword,' ')}}
+                                        {{ form_widget(registrationForm.plainPassword) }}
+                                        {{  form_errors(registrationForm.plainPassword)}}                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 m-b30">
+                                <button name="submit" type="submit" value="Register" class="btn button-md">Sign Up</button>
+                            </div>
+                            {{ form_end(registrationForm) }}
+
+
+                            <div class="col-lg-12">
+                                <h6>Sign Up with Social media</h6>
+                                <div class="d-flex">
+                                    <a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
+                                    <a class="btn flex-fill m-l5 google-plus" href="#"><i class="fa fa-google-plus"></i>Google Plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{#
+
+{% for flash_error in app.flashes('verify_email_error') %}
+       <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+   {% endfor %}
+
+   <h1>Register</h1>
+
+   {{ form_start(registrationForm) }}
+       {{ form_row(registrationForm.email) }}
+       {{ form_row(registrationForm.plainPassword, {
+           label: 'Password'
+       }) }}
+       {{ form_row(registrationForm.agreeTerms) }}
+
+       <button type="submit" class="btn">Register</button>
+   {{ form_end(registrationForm) }}
+#}
+
+{#
+
+
+
+{{ form_start(registrationForm,{'attr':{'novalidate':'novalidate'  }}) }}
+
+{{  form_label(registrationForm.nom,' nom')}}
+{{ form_widget(registrationForm.nom) }}
+{{  form_errors(registrationForm.nom)}}
+
+
+{{  form_label(registrationForm.prenom,' prenom')}}
+{{ form_widget(registrationForm.prenom) }}
+{{  form_errors(registrationForm.prenom)}}
+
+
+{{  form_label(registrationForm.photo,' photo')}}
+{{ form_widget(registrationForm.photo) }}
+{{  form_errors(registrationForm.photo)}}
+
+
+
+{{  form_label(registrationForm.cin,'cin ')}}
+{{ form_widget(registrationForm.cin) }}
+{{  form_errors(registrationForm.cin)}}
+
+
+{{  form_label(registrationForm.region,'region ')}}
+{{ form_widget(registrationForm.region) }}
+{{  form_errors(registrationForm.region)}}
+
+
+{{  form_label(registrationForm.ville,'ville ')}}
+{{ form_widget(registrationForm.ville) }}
+{{  form_errors(registrationForm.ville)}}
+
+
+{{  form_label(registrationForm.adresse,'adresse ')}}
+{{ form_widget(registrationForm.adresse) }}
+{{  form_errors(registrationForm.adresse)}}
+
+{{  form_label(registrationForm.email,'email ')}}
+{{ form_widget(registrationForm.email) }}
+{{  form_errors(registrationForm.email)}}
+
+{{  form_label(registrationForm.plainPassword,'password ')}}
+{{ form_widget(registrationForm.plainPassword) }}
+{{  form_errors(registrationForm.plainPassword)}}
+
+
+{{  form_label(registrationForm.agreeTerms,'agreeTerms ')}}
+{{ form_widget(registrationForm.agreeTerms) }}
+{{  form_errors(registrationForm.agreeTerms)}}
+
+
+<div class="button">
+    <input type="submit" value="Register">
+</div>
+
+{{ form_end(registrationForm) }}
+
+#}

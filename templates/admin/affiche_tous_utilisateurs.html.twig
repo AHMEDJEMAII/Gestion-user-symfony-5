@@ -1,0 +1,144 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <div  style=" background-image: url('https://www.hdwallpapers.in/download/white_aesthetic_lines_background_hd_white_aesthetic-HD.jpg')">
+    {% include "partials/header_admin.html.twig" %}
+    {% include "partials/navigation_panel.html.twig" %}
+
+
+
+
+
+    <main class="ttr-wrapper">
+        <div class="container-fluid">
+            <div class="db-breadcrumb">
+                <h4 class="breadcrumb-title">Users</h4>
+                <ul class="db-breadcrumb-list">
+                    <li>
+                        <a href="#"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li>Utilisateurs</li>
+                </ul>
+            </div>
+            <div class="row">
+                <!-- Your Profile Views Chart -->
+                <div class="col-lg-12 m-b30">
+                    <div class="widget-box">
+                        <div class="wc-title">
+                            <h4>list des utilisateur </h4>
+                        </div>
+                        <div class="widget-inner">
+
+                            <div class="table-responsive">
+                                <div class="message-flash">
+                                    {% for message in app.flashes('success') %}
+                                        <div class="alert alert-success">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <input id="search_input" type="text" name="search_input" placeholder="Search.." style="margin: 1em 0">
+
+
+                                <table class="table" id="myTable">
+                                    <thead>
+                                    <tr>
+                                        <th>user</th>
+                                        <th>email</th>
+                                        <th>nom</th>
+                                        <th>adresse</th>
+                                        <th>isActive</th>
+                                        <th>action</th>
+                                        <th>send email</th>
+                                        <th>supprimer</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for users in users %}
+                                        <tr>
+
+
+                                            <td>
+                                   <span class="list-img"><img src="{{ asset('images/' ~ users.photo) }}"
+                                                               alt=""> </span>
+                                            </td>
+
+                                            <td>{{ users.email }}</td>
+                                            <td>{{ users.nom }}</td>
+
+
+                                            <td>{{ users.adresse }}</td>
+                                            <td>
+                                                {% if users.isactive == "activer" %}
+                                                    <span class="badge badge-info">{{ users.isactive }} </span>
+                                                {% else %}
+                                                    <span class="badge badge-danger">{{ users.isactive }} </span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if users.isactive == "activer" %}
+                                                    <button type="button" class="btn btn-danger"
+
+                                                            name="desactiverUser">
+                                                           <a href="{{ path('desactiverUser',{'id':users.id}) }}">
+                                                        <span class="badge badge-danger">desactiver</span></a>
+
+                                                    </button>
+                                                {% else %}
+                                                    <button type="button" class="btn btn-success"><a
+
+                                                          href="{{ path('activerUser',{'id':users.id}) }}">
+                                                        <span class="badge badge-success">activer</span></a>
+
+                                                    </button>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info"><a
+
+                                                          href="{{ path('sendMailToUser',{'email_use':users.email}) }}">
+                                                    <span class="badge badge-info">send</span></a>
+
+                                                </button>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-info">    <a href="{{ path('app_user_delete', {'id': users.id}) }}" class="btn btn-warning" ><span class="badge badge-info">supprimer</span></a></a>
+
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td> aucun utilisateur trouveé</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Your Profile Views Chart END-->
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#search_input").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+{% endblock %}

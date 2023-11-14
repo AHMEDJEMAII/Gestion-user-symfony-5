@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Reset Email Sent{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="page-wraper">
+        <div class="account-form">
+            <div class="account-head" style="background-image:url(assets/images/background/bg2.jpg);">
+                <a href="index.html"><img src="../../public/assets/images/logo-white-2.png" alt=""></a>
+            </div>
+            <div class="account-form-inner">
+                <div class="account-container">
+                    <div class="error-page">
+
+                        <p>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+                            This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+                        <div class="">
+                            <a  href="{{ path('app_forgot_password_request') }}" class="btn m-r5">try again</a>
+                            <a href="{{ path('app_hi') }}" class="btn outline black">Back To Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+{#
+
+<p>
+     If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+     This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+ </p>
+ <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+
+
+#}
